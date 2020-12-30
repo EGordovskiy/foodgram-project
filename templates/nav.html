@@ -1,0 +1,29 @@
+<header class="header">
+      <nav class="nav">
+          <div class="nav__container container">
+              <ul class="nav__items list">
+                {% if user.is_authenticated %}
+                  <li class="nav__item {% if index %} nav__item_active {% endif %}"><a href="{% url 'index' %}" class="nav__link link">Recipes</a></li>
+                  <li class="nav__item"><a href="#" class="nav__link link">Subscriptions</a></li>
+                  <li class="nav__item {% if new_recipe %} nav__item_active {% endif %}"><a href="{% url 'new_recipe' %}" class="nav__link link">Add recipe</a></li>
+                  <li class="nav__item"><a href="#" class="nav__link link">Favorites (избранное)</a></li>
+                  <li class="nav__item {% if purchases %} nav__item_active {% endif %}"><a href="{% url 'purchases_list' %}" class="nav__link link">Shopping list</a> <span class="badge badge_style_blue nav__badge" id="counter">{{ count|default_if_none:"10"}}</span></li>
+
+              </ul>
+              <ul class="nav__items list">
+              
+                  <li class="nav__item"><a href="#" class="nav__link link">Change password</a></li>
+                  <li class="nav__item {% if index %} nav__item_active {% endif %}"><a href="#" class="nav__link link">Log out</a></li>
+                {% else %}
+                  <li class="nav__item {% if index %} nav__item_active {% endif %}"><a href="{% url 'index' %}" class="nav__link link">Recipes</a></li>
+                  <li class="nav__item {% if purchases %} nav__item_active {% endif %}"><a href="{% url 'purchases_list' %}" class="nav__link link">Shopping list</a> <span class="badge badge_style_blue nav__badge" id="counter">{{ user.username}}</span></li>
+                  </ul>
+              <ul class="nav__items list">
+              
+                  <li class="nav__item {% if login %} nav__item_active {% endif %}"><a href="{% url 'login' %}" class="nav__link link">Log in</a></li>
+                  <li class="nav__item {% if signup %} nav__item_active {% endif %}"><a href="{% url 'signup' %}" class="nav__link link">Registration</a></li>
+                {% endif %}
+              </ul>
+          </div>
+      </nav>
+  </header>
