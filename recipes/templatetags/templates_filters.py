@@ -1,5 +1,5 @@
 from django import template
-from recipes.models import ShopingList, FollowRecipe, FollowUser
+from recipes.models import ShopingList, FollowRecipe, FollowUser, Recipe
 
 register = template.Library()
 
@@ -30,6 +30,28 @@ def is_shop(recipe, user):
 def is_favorite(recipe, user):
     return FollowRecipe.objects.filter(user=user, recipe=recipe).exists()
 
+
 @register.filter(name='is_follow')
 def is_follow(author, user):
     return FollowUser.objects.filter(user=user, author=author).exists()
+
+
+@register.filter(name='get_recipes')
+def get_recipes(author):
+    return Recipe.objects.select_related("author").filter(author=author)[:3]
+
+
+@register.filter(name='get_count_recipes')
+def get_count_recipes(author):
+    count = author.recipes.count() - 3
+    if count < 1:
+        return False
+
+    if count % 10 == 1 and count % 100 != 11:
+        end = 'рецепт'
+    elif 2 <= count % 10 <= 4 and (count % 100 < 10 or count % 100 >= 20):
+        end = 'рецепта'
+    else:
+        end = 'рецептов'
+
+    return f'Еще {count} {end}...'

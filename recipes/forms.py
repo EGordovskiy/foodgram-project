@@ -5,5 +5,14 @@ from .models import Recipe
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ('title', 'image', 'description', 'ingredients', 'tag', 'cooking_time')
-        widgets = {'tags': CheckboxSelectMultiple(),}
+        fields = [
+            'title', 
+            'breakfast',
+            'lunch',
+            'dinner',
+            'image', 
+            'description', 
+            'cooking_time']
+        widgets = {
+            'tag': CheckboxSelectMultiple(), 
+            }

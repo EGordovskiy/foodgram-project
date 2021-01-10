@@ -38,6 +38,8 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'recipes',
     'users',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sorl.thumbnail',
+    'rest_framework',
+    'api',
     
 ]
 
@@ -138,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = 'index'
-# LOGOUT_REDIRECT_URL = "index"
+# LOGOUT_REDIRECT_URL = 'index'
 
 
 #  подключаем движок filebased.EmailBackend
