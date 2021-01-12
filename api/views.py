@@ -60,11 +60,10 @@ class Subscribe(LoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
     def delete(self, request, author_id):
-        user = get_object_or_404(
-            User, username=request.user.username
-        )
-        author = get_object_or_404(User, id=author_id)
-        obj = get_object_or_404(FollowUser, user=user, author=author)
+        obj = get_object_or_404(
+            FollowUser, 
+            user__username=request.user.username, 
+            author__id=author_id)
         obj.delete()
         return JsonResponse({'success': True})
 
@@ -77,8 +76,9 @@ class Purchase(LoginRequiredMixin, View):
         return JsonResponse({'success': True})
 
     def delete(self, request, recipe_id):
-        recipe = get_object_or_404(Recipe, id=recipe_id)
-        user = get_object_or_404(User, username=request.user.username)
-        obj = get_object_or_404(ShopingList, user=user, recipe=recipe)
+        obj = get_object_or_404(
+            ShopingList, 
+            user__username=request.user.username, 
+            recipe__id=recipe_id)
         obj.delete()
         return JsonResponse({'success': True})

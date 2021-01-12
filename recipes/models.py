@@ -11,7 +11,7 @@ class Ingredients(models.Model):
     description = models.TextField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return '%s %s' % (self.title, self.dimension)
+        return f'{self.title} {self.dimension}'
 
 
 class IngredientRecipe(models.Model):
@@ -45,7 +45,7 @@ class Recipe(models.Model):
         related_name='recipes',
         through='IngredientRecipe'
     )
-    cooking_time = models.IntegerField()
+    cooking_time = models.PositiveIntegerField()
     pub_date = models.DateTimeField(
         'date published',
         auto_now_add=True)
