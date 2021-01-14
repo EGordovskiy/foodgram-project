@@ -11,6 +11,21 @@ from django.http import JsonResponse, HttpResponse
 from django.db.models import Sum
 
 
+@user_passes_test(lambda u: u.is_superuser)
+def add_ingredients(self):
+    import json
+    from django.http import HttpResponse
+
+    with open('ingredients.json', 'r', encoding='utf-8') as fh:
+        data = json.load(fh)
+
+    for i in data:
+        print('You added this new ingredient:', i)
+        ingredient = Ingredients(title=i['title'], dimension=i['dimension'])
+        ingredient.save()
+    return HttpResponse('\n'.join(str(data)))
+
+
 def index(request):
     recipe = Recipe.objects.select_related(
         'author').order_by('-pub_date').all()
