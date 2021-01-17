@@ -1,6 +1,6 @@
 # foodgram-project
 
-ip = 
+ip = 178.154.254.11
 
 ## Installation
 
