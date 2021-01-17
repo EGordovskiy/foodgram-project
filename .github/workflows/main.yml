@@ -48,9 +48,9 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }} 
         script: |
-         sudo docker pull egordovskiy/foodgramm
+         sudo docker pull egordovskiy/foodgramm:v1
          sudo docker stop $(sudo docker ps -a -q)
-         sudo docker run --rm -d -p 5000:5000 egordovskiy/foodgramm
+         sudo docker run --rm -d -p 5000:5000 egordovskiy/foodgramm:v1
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
