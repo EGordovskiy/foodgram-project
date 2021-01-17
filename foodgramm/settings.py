@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'rest_framework',
     'api',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -85,11 +85,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'foodgramm.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
 
 DATABASES = {
-    'default': {
+        'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': os.environ.get('DB_ENGINE'),
@@ -102,8 +101,6 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
