@@ -1,7 +1,5 @@
 # foodgram-project
 
-ip = 178.154.254.11 https://foodgram.cf/
-
 ## Installation
 
 1. clone repository and enable virtual environment
